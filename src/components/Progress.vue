@@ -1,16 +1,21 @@
 <template>
-  <div class="hello">
-    <h1> cat </h1>
-  </div>
+  <progress class="progress is-warning" :value="value" :max="max"></progress>
 </template>
 
 <script>
-export default {
-  name: 'HelloWorld',
-  props: {
-    msg: String
+
+  export default {
+    name: 'Progress',
+    props: {
+      value: {
+        type: Number
+      },
+      max: {
+        type: Number
+      }
+    }
   }
-}
+
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->

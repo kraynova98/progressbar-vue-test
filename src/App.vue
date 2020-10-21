@@ -1,12 +1,45 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
+    <div class="container">
+      <Progress :value="progress.array.length" :max="progress.max"></Progress>
     </div>
-    <router-view/>
+    <div class="columns">
+      <div class="column">
+        <Buttons @setEl="setEl" class="button is-primary" name="Добавить"></Buttons>
+      </div>
+<!--      <div class="column">-->
+<!--        <Buttons class="button is-danger is-light" name="Очистить"></Buttons>-->
+<!--      </div>-->
+    </div>
+    <p>{{ progress.array }}</p>
   </div>
 </template>
+
+<script>
+  import Progress from "@/components/Progress";
+  import Buttons from "@/components/Buttons";
+
+  export default {
+    name: 'App',
+    components:{ Progress, Buttons },
+
+    data () {
+      return {
+        progress: {
+          array: [],
+          // value: this.array.length,
+          max: 10
+        }
+      }
+    },
+
+    methods: {
+      setEl() {
+        this.progress.array.push('cat');
+      }
+    }
+  }
+</script>
 
 <style lang="scss">
 #app {
