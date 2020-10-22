@@ -13,15 +13,7 @@
       max: {
         type: Number
       }
-    },
-
-    // computed: {
-    //   maxValue: {
-    //     get() {
-    //       return this.max;
-    //     }
-    //   }
-    // }
+    }
   }
 
 </script>

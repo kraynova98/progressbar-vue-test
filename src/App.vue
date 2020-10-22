@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <div class="container mt-6">
-      <Progress :value="array.length" :max.sync="maxCountValue"></Progress>
+      <Progress :value="array.length" :max="maxCountValue"></Progress>
       <div class="columns mt-6">
         <div class="column">
           <addButton @setEl="setEl" name="Добавить"></addButton>
@@ -16,8 +16,6 @@
         </div>
       </div>
     </div>
-    <p>{{ array }}</p>
-    <p>{{ maxCountValue }}</p>
   </div>
 </template>
 
