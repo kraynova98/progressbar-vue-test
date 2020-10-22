@@ -4,7 +4,7 @@
       <Progress :value="array.length" :max="maxCountValue"></Progress>
       <div class="columns mt-6">
         <div class="column">
-          <addButton @setEl="setEl" name="Добавить"></addButton>
+          <addButton @setEl="setEl" name="Добавить" :disabled="isFull"></addButton>
         </div>
         <div class="column">
           <clearButton @clearEl="clearEl" name="Очистить"></clearButton>
@@ -15,6 +15,7 @@
           <maxCount @changeValue = "setMaxCount"></maxCount>
         </div>
       </div>
+      <h5 class="title is-5" v-if="maxCountValue && isFull">Вы не можете нажать на кнопку более {{ maxCountValue + " " + wordType }}</h5>
     </div>
   </div>
 </template>
@@ -32,14 +33,25 @@
     data () {
       return {
           array: [],
-          max: 10,
           maxCountValue: 0
+      }
+    },
+
+    computed: {
+      isFull: function() {
+        return this.array.length >= (this.maxCountValue || 0);
+      },
+
+      wordType: function() {
+        return this.maxCountValue !== 1 ? 'раз' : 'раза'
       }
     },
 
     methods: {
       setEl() {
-        this.array.push('cat');
+        if (!this.isFull) {
+          this.array.push('cat');
+        }
       },
 
       clearEl() {
