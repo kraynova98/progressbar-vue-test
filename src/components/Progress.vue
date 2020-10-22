@@ -13,7 +13,15 @@
       max: {
         type: Number
       }
-    }
+    },
+
+    // computed: {
+    //   maxValue: {
+    //     get() {
+    //       return this.max;
+    //     }
+    //   }
+    // }
   }
 
 </script>
@@ -33,5 +41,9 @@ li {
 }
 a {
   color: #42b983;
+}
+
+.progress::-webkit-progress-value {
+  transition: width 0.5s ease;
 }
 </style>

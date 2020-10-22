@@ -1,41 +1,55 @@
 <template>
   <div id="app">
-    <div class="container">
-      <Progress :value="progress.array.length" :max="progress.max"></Progress>
-    </div>
-    <div class="columns">
-      <div class="column">
-        <Buttons @setEl="setEl" class="button is-primary" name="Добавить"></Buttons>
+    <div class="container mt-6">
+      <Progress :value="array.length" :max.sync="maxCountValue"></Progress>
+      <div class="columns mt-6">
+        <div class="column">
+          <addButton @setEl="setEl" name="Добавить"></addButton>
+        </div>
+        <div class="column">
+          <clearButton @clearEl="clearEl" name="Очистить"></clearButton>
+        </div>
       </div>
-<!--      <div class="column">-->
-<!--        <Buttons class="button is-danger is-light" name="Очистить"></Buttons>-->
-<!--      </div>-->
+      <div class="field">
+        <div class="control">
+          <maxCount @changeValue = "setMaxCount"></maxCount>
+        </div>
+      </div>
     </div>
-    <p>{{ progress.array }}</p>
+    <p>{{ array }}</p>
+    <p>{{ maxCountValue }}</p>
   </div>
 </template>
 
 <script>
   import Progress from "@/components/Progress";
-  import Buttons from "@/components/Buttons";
+  import addButton from "@/components/add-button";
+  import clearButton from "@/components/clear-button";
+  import maxCount from "@/components/max-count";
 
   export default {
     name: 'App',
-    components:{ Progress, Buttons },
+    components:{ Progress, addButton, clearButton, maxCount },
 
     data () {
       return {
-        progress: {
           array: [],
-          // value: this.array.length,
-          max: 10
-        }
+          max: 10,
+          maxCountValue: 0
       }
     },
 
     methods: {
       setEl() {
-        this.progress.array.push('cat');
+        this.array.push('cat');
+      },
+
+      clearEl() {
+        this.array = [];
+      },
+
+      setMaxCount(val) {
+        this.maxCountValue = val;
       }
     }
   }

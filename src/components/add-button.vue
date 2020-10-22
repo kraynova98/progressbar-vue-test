@@ -1,27 +1,23 @@
 <template>
-    <button @click="setElement" :disabled="disabled">{{ name }}</button>
+    <button @click="setElement" class="button is-primary" :disabled="disabled">{{ name }}</button>
 </template>
 
 <script>
 
   export default {
-    name: 'Buttons',
+    name: 'addButton',
     props: {
       disabled: {
         type: Boolean
       },
       name: {
         type: String
-      },
-      someFunction: {
-        type: Function
       }
     },
 
     methods: {
       setElement() {
-        this.$emit("setEl")
-        console.log('cat');
+        this.$emit("setEl");
       }
     }
   }
